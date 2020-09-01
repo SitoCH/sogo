@@ -1,8 +1,10 @@
 FROM phusion/baseimage:bionic-1.0.0
 
 # Install Apache, SOGo from repository
-RUN echo "deb http://packages.inverse.ca/SOGo/nightly/5/ubuntu/ bionic bionic" > /etc/apt/sources.list.d/inverse.list && \
-    apt-key adv --keyserver keys.gnupg.net --recv-key 0x810273C4 && \
+RUN apt-get update && apt-get install -y wget && \
+    echo "deb http://packages.inverse.ca/SOGo/nightly/5/ubuntu/ bionic bionic" > /etc/apt/sources.list.d/inverse.list && \
+    wget -q "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x810273C4" -O- | gpg --dearmor > 0x810273C4.gpg && \
+    mv 0x810273C4.gpg /etc/apt/trusted.gpg.d/ && \
     apt-get update && \
     mkdir /usr/share/doc/sogo/ && \
     touch /usr/share/doc/sogo/empty.sh && \

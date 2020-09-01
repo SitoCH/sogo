@@ -6,7 +6,7 @@ RUN echo "deb http://packages.inverse.ca/SOGo/nightly/5/ubuntu/ bionic bionic" >
     apt-get update && \
     mkdir /usr/share/doc/sogo/ && \
     touch /usr/share/doc/sogo/empty.sh && \
-    apt-get install -y --no-install-recommends gettext-base apache2 sogo sogo-activesync sope4.9-gdl1-mysql memcached && \
+    apt-get install -y --no-install-recommends iproute2 gettext-base apache2 sogo sogo-activesync sope4.9-gdl1-mysql memcached && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Activate required Apache modules
